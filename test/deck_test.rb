@@ -43,7 +43,10 @@ class DeckTest < Minitest::Test
   end
 
   def test_we_can_add_cards
+    @deck.remove_card
     @deck.add_card(@card4)
-    assert_equal [@card1,@card2,@card3,@card4], @deck.cards 
+    assert_equal [@card2,@card3,@card4], @deck.cards
+    assert_equal 33.33, @deck.percent_high_ranking 
   end
+
 end

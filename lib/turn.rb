@@ -36,10 +36,15 @@ class Turn
   end
 
   def pile_cards
-    @spoils_of_war << @player1.deck.cards.first
-    @spoils_of_war << @player2.deck.cards.first
-    @player1.deck.cards.shift
-    @player2.deck.cards.shift
+    if type == :basic
+      @spoils_of_war << @player1.deck.cards.first
+      @spoils_of_war << @player2.deck.cards.first
+      @player1.deck.cards.shift
+      @player2.deck.cards.shift
+    elsif type == :war
+      @spoils_of_war << @player1.deck.cards[0..2]
+      @spoils_of_war << @player2.deck.cards[0..2]
+    end
   end
 
   def award_spoils(winner)

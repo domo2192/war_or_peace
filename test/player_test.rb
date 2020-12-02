@@ -20,4 +20,9 @@ class PlayerTest < Minitest::Test
     assert_equal "Clarisa", @player.name
     assert_equal @deck, @player.deck
   end
-end 
+
+  def test_has_lost_method_returns_false
+    assert_equal false, @player.has_lost?
+
+  end
+end

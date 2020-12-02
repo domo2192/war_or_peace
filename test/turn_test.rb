@@ -39,7 +39,7 @@ class TurnTest < Minitest:: Test
     assert_equal @player1, @turn.winner
   end
 
-  def test_we_can_pile_cards
+  def test_we_can_pile_cards_for_basic
     @turn.pile_cards
     assert_equal [@card1, @card3], @turn.spoils_of_war
     assert_equal [@card2, @card5, @card8], @player1.deck.cards
@@ -68,6 +68,21 @@ class TurnTest < Minitest:: Test
     player1 = Player.new("Megan", deck1)
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
-    assert_equal player2, turn.winner 
+    assert_equal player2, turn.winner
+  end
+
+  def test_spoils_of_war_is_piled_for_war
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    turn.pile_cards
+    assert_equal [@card1, @card4, @card2, @card3, @card5, @card6], turn.spoils_of_war
+    assert_equal [@card8], player1.deck
+    assert_equal [@card7], player2.deck
+    turn.award_spoils(winner)
+    assert_equal [@card8], player1.deck
+    assert_equal [@card7, @card1, @card4, @card2, @card3, @card5, @card6], player2.deck
   end
 end

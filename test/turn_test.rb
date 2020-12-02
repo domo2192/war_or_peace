@@ -60,6 +60,14 @@ class TurnTest < Minitest:: Test
     player2 = Player.new("Aurora", deck2)
     turn = Turn.new(player1, player2)
     assert_equal :war, turn.type
+  end
 
+  def test_winner_is_changed_to_player_two
+    deck1 = Deck.new([@card1, @card2, @card5, @card8])
+    deck2 = Deck.new([@card4, @card3, @card6, @card7])
+    player1 = Player.new("Megan", deck1)
+    player2 = Player.new("Aurora", deck2)
+    turn = Turn.new(player1, player2)
+    assert_equal player2, turn.winner 
   end
 end

@@ -23,6 +23,13 @@ class PlayerTest < Minitest::Test
 
   def test_has_lost_method_returns_false
     assert_equal false, @player.has_lost?
+  end
 
+  def test_has_lost_method_changes_to_true
+    @player.deck.remove_card
+    @player.deck.remove_card
+    assert_equal false, @player.has_lost?
+    @player.deck.remove_card
+    assert_equal true, @player.has_lost?
   end
 end

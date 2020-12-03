@@ -45,7 +45,7 @@ class Turn
       @spoils_of_war << @player1.deck.cards.first
       @spoils_of_war << @player2.deck.cards.first
       @player1.deck.cards.shift
-      @player2.deck.cards.shift
+      @player2.deck.cards.shift 
     elsif type == :war
       @spoils_of_war << @player1.deck.cards[0..2]
       @spoils_of_war << @player2.deck.cards[0..2]
@@ -59,6 +59,6 @@ class Turn
     @spoils_of_war.each do |spoil|
       winner.deck.cards << spoil
     end
-    @spoils_of_war = []
+
   end
 end

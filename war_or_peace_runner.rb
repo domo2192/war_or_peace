@@ -19,6 +19,9 @@ suits.each do |suit|
 end
 deck1 = Deck.new(cards.shuffle[0..25])
 deck2 = Deck.new(cards.shuffle[26..51])
+player1 = Player.new("Megan", deck1)
+player2 = Player.new("Aurora", deck2)
 
-p deck1.sort
-p deck2.sort
+p "Welcome to War! (or Peace) This game will be played with 52 cards."
+p "The players today are #{player1.name} and #{player2.name}."
+p "Type 'GO' to start the game"

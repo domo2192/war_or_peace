@@ -1,17 +1,15 @@
 class Deck
-
-  attr_reader:cards
+  attr_reader :cards
 
   def initialize(cards)
-     @cards = cards
+    @cards = cards
   end
 
   def rank_of_card_at(index)
-     return 0 if @cards[index].nil?
-     @cards[index].rank 
+    return 0 if @cards[index].nil?
+
+    @cards[index].rank
   end
-
-
 
   def high_ranking_cards
     @cards.select do |card|
@@ -22,7 +20,6 @@ class Deck
   def percent_high_ranking
     (high_ranking_cards.count.to_f / @cards.count.to_f).round(4) * 100
   end
-
 
   def remove_card
     @cards.shift

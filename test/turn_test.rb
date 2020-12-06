@@ -1,12 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/card'
-require'./lib/deck'
+require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-class TurnTest < Minitest:: Test
-
+class TurnTest < Minitest::Test
   def setup
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)
@@ -18,8 +17,8 @@ class TurnTest < Minitest:: Test
     @card8 = Card.new(:diamond, '2', 2)
     @deck1 = Deck.new([@card1, @card2, @card5, @card8])
     @deck2 = Deck.new([@card3, @card4, @card6, @card7])
-    @player1 = Player.new("Megan", @deck1)
-    @player2 = Player.new("Aurora", @deck2)
+    @player1 = Player.new('Megan', @deck1)
+    @player2 = Player.new('Aurora', @deck2)
     @turn = Turn.new(@player1, @player2)
     @winner = @turn.winner
   end
@@ -65,8 +64,8 @@ class TurnTest < Minitest:: Test
   def test_turn_type_for_war
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     assert_equal :war, turn.type
   end
@@ -74,8 +73,8 @@ class TurnTest < Minitest:: Test
   def test_winner_is_changed_to_player_two
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     assert_equal player2, turn.winner
   end
@@ -83,19 +82,19 @@ class TurnTest < Minitest:: Test
   def test_spoils_of_war_is_piled_for_war
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
-    assert_equal [@card1, @card4, @card2,@card3, @card5, @card6], turn.spoils_of_war
+    assert_equal [@card1, @card4, @card2, @card3, @card5, @card6], turn.spoils_of_war
   end
 
   def test_decks_are_changed_for_war_type
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
@@ -106,8 +105,8 @@ class TurnTest < Minitest:: Test
   def test_award_spoils_changing_players_decks_for_war
     deck1 = Deck.new([@card1, @card2, @card5, @card8])
     deck2 = Deck.new([@card4, @card3, @card6, @card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
@@ -127,8 +126,8 @@ class TurnTest < Minitest:: Test
     card8 = Card.new(:diamond, '2', 2)
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     assert_equal :mutually_assured_destruction, turn.type
   end
@@ -144,10 +143,10 @@ class TurnTest < Minitest:: Test
     card8 = Card.new(:diamond, '2', 2)
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
-    assert_equal "No Winner", turn.winner
+    assert_equal 'No Winner', turn.winner
   end
 
   def test_pile_cards_for_mutually_assured_destruction
@@ -161,11 +160,11 @@ class TurnTest < Minitest:: Test
     card8 = Card.new(:diamond, '2', 2)
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
-    assert_equal "No Winner", winner
+    assert_equal 'No Winner', winner
     turn.pile_cards
     assert_equal [], turn.spoils_of_war
   end
@@ -181,8 +180,8 @@ class TurnTest < Minitest:: Test
     card8 = Card.new(:diamond, '2', 2)
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
@@ -202,12 +201,12 @@ class TurnTest < Minitest:: Test
     card8 = Card.new(:diamond, '2', 2)
     deck1 = Deck.new([card1, card2, card5, card8])
     deck2 = Deck.new([card4, card3, card6, card7])
-    player1 = Player.new("Megan", deck1)
-    player2 = Player.new("Aurora", deck2)
+    player1 = Player.new('Megan', deck1)
+    player2 = Player.new('Aurora', deck2)
     turn = Turn.new(player1, player2)
     winner = turn.winner
     turn.pile_cards
     turn.award_spoils(winner)
-    assert_equal [card1, card4, card2, card3, card5, card6], turn.removed_cards 
+    assert_equal [card1, card4, card2, card3, card5, card6], turn.removed_cards
   end
 end

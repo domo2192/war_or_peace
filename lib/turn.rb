@@ -61,6 +61,7 @@ class Turn
   def award_spoils(winner)
     @spoils_of_war.each do |spoil|
       winner.deck.add_card(spoil)
+      @spoils_of_war.clear 
     end
   end
 end

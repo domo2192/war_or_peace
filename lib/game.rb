@@ -10,26 +10,24 @@ class Game
   end
 
   def start
-    while @turn_counter < 100_000
-      turn = Turn.new(player1, player2)
       each_turn
-    end
-    p '---- DRAW -----'
+      game_results 
   end
 
   def each_turn
     turn = Turn.new(player1, player2)
-    turn_win = turn.winner
-    turn_type = turn.type
-    turn.pile_cards
-    turn.award_spoils(turn_win)
-
-    p turn_results(turn, turn_win, turn_type)
+      until turn.player1.has_lost? || turn.player2.has_lost?
     @turn_counter += 1
+    turn_type = turn.type
+    turn_win = turn.winner
+    turn.pile_cards
+    p turn_results(turn, turn_win, turn_type)
+    turn.award_spoils(turn_win)
+    end
   end
 
   def winner_declared
-    @player1.has_lost? || @player2.has_lost? || @turn_counter == 100_000
+   @player1.has_lost? || @player2.has_lost? || @turn_counter == 100_000
   end
 
   def game_results
@@ -38,7 +36,7 @@ class Game
     elsif @player2.has_lost?
       "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
     else
-      p '---- DRAW -----'
+      "---- DRAW -----"
     end
   end
 

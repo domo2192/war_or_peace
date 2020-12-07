@@ -11,19 +11,23 @@ class Game
 
   def start
       each_turn
-      game_results 
+      winner_declared
+    puts game_results
   end
 
   def each_turn
     turn = Turn.new(player1, player2)
-      until turn.player1.has_lost? || turn.player2.has_lost?
+      until turn.player1.has_lost? || turn.player2.has_lost? || @turn_counter == 100_000
     @turn_counter += 1
     turn_type = turn.type
     turn_win = turn.winner
     turn.pile_cards
-    p turn_results(turn, turn_win, turn_type)
     turn.award_spoils(turn_win)
-    end
+    turn.spoils_of_war.clear
+
+    p turn_results(turn, turn_win, turn_type)
+
+     end
   end
 
   def winner_declared
@@ -31,6 +35,7 @@ class Game
   end
 
   def game_results
+
     if @player1.has_lost?
       "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
     elsif @player2.has_lost?

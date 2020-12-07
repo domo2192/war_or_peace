@@ -11,8 +11,8 @@ def random_gen
   cards = []
 
   suits.each do |suit|
-    values.each_with_index do |value, index|
-      cards << Card.new(suit, value, index + 2)
+    values.each.with_index(2) do |value, index|
+      cards << Card.new(suit, value, index)
     end
   end
   cards
